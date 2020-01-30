@@ -1,3 +1,10 @@
+---
+layout: post
+title: Nuxt.js에서 CORS 처리
+comments: true
+categories: Vue.js
+tags: vuejs,cors,nginx
+---
 ## Nuxt.js에서 CORS 문제 처리
 
 프론트와 백엔드를 나눠서 개발할 때 웹쪽에서 골치가 아픈 것이 CORS 문제이다.
