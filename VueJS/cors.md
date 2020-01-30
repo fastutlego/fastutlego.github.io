@@ -10,39 +10,40 @@ API서버는 localhost의. 8000 포트에서 서비스 되고 있으며, 웹서�
 
 ### 웹서버(Nginx)에서 처리
 
-‘’’
+'''
 
 # nginx.conf
 
 http {
-  …
-  server {
-    …
-    location / {
-    }
-    location /v1/ {
-      proxy_pass http://localhost:8080;
-      proxy_redirect http://localhost:8080/ $scheme://$host:8080/;
-    }
-  }
+	...
+	server {
+		...
+		location / {
+			...
+		}
+		location /v1/ {
+			proxy_pass http://localhost:8080;
+			proxy_redirect http://localhost:8080/ $scheme://$host:8080/;
+		}
+	}
 }
 
-‘’’
+'''
 
 ### Nuxt.js의 axios의 Proxy 사용
 
-‘’’
+'''
 
 # nuxt.config.js
 
 axios: {
-	…
+	...
 	proxy: true
 },
 proxy: {
-    '/v1/': 'http://localhost:8000/‘
+	'/v1/': 'http://localhost:8000/‘
 }
 
-‘’’
+'''
 위와 같이 /v1/test 로 요청하면 실제로는 http://localhost:8080/v1/test 로 요청이 처리되며, 같은 도메인상에서 호출하는 것이기 때문에 문제없이 잘 수행된다.
 
