@@ -15,17 +15,17 @@ API서버는 localhost의. 8000 포트에서 서비스 되고 있으며, 웹서�
 # nginx.conf
 
 http {
-	...
-	server {
-		...
-		location / {
-			...
-		}
-		location /v1/ {
-			proxy_pass http://localhost:8080;
-			proxy_redirect http://localhost:8080/ $scheme://$host:8080/;
-		}
-	}
+  ...
+    server {
+      ...
+        location / {
+          ...
+        }
+        location /v1/ {
+          proxy_pass http://localhost:8080;
+          proxy_redirect http://localhost:8080/ $scheme://$host:8080/;
+        }
+    }
 }
 
 ```
@@ -37,11 +37,11 @@ http {
 # nuxt.config.js
 
 axios: {
-	...
-	proxy: true
+  ...
+  proxy: true
 },
 proxy: {
-	'/v1/': 'http://localhost:8000/‘
+  '/v1/': 'http://localhost:8000/‘
 }
 
 ```
