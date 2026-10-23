@@ -1,0 +1,16 @@
+title: fastutlego
+description: 1인 앱 개발 기록
+lang: ko
+url: https://fastutlego.github.io
+baseurl: ""
+theme: minima
+permalink: /:year/:month/:day/:title/
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+minima:
+  social_links: []
+
+exclude:
+  - README.md
