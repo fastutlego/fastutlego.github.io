@@ -1,0 +1,23 @@
+---
+# Every post as JSON, newest first. fastutle.com downloads this file at build time into its
+# _data/ folder and draws its blog lists from it, so a post published here appears there without
+# a commit in the fastutle.com site repository. Keys per post: lang, title, description, date (YYYY-MM-DD), url
+# (absolute), tags (array, may be empty), read_minutes (number or null). `date` carries the full
+# time so two posts from the same day keep their order when fastutle.com sorts by it.
+layout: null
+sitemap: false
+---
+{%- assign posts = site.posts | sort: "date" | reverse -%}
+[
+{%- for post in posts %}
+  {
+    "lang": {{ post.lang | default: site.lang | jsonify }},
+    "title": {{ post.title | jsonify }},
+    "description": {{ post.description | jsonify }},
+    "date": {{ post.date | date_to_xmlschema | jsonify }},
+    "url": {{ post.url | absolute_url | jsonify }},
+    "tags": {{ post.tags | jsonify }},
+    "read_minutes": {{ post.read_minutes | jsonify }}
+  }{%- unless forloop.last %},{% endunless %}
+{%- endfor %}
+]

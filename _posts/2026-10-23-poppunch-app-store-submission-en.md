@@ -5,6 +5,8 @@ title: "Pop Punch 1.0 goes to App Review: one day with an AI agent"
 date: 2026-10-23 20:00:00 +0900
 description: "A stale build, one line of copy that didn't match the app, and a screenshot caption that nearly tripped the bullying rule. What we caught the day before submitting Pop Punch 1.0."
 image: /assets/img/poppunch-app-store-submission/caption-before-after.webp
+tags: [Pop Punch, Launch]
+read_minutes: 9
 ---
 
 <p class="lang-link"><a href="/2026/10/23/poppunch-app-store-submission/" lang="ko">한국어로 읽기 →</a></p>

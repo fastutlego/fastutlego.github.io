@@ -5,6 +5,8 @@ title: "AI 에이전트와 함께한 App Store 심사 제출 하루"
 date: 2026-10-23 20:00:00 +0900
 description: "오래된 빌드, 사실과 다른 설명 한 줄, 괴롭힘 조항에 걸릴 뻔한 캡션까지. 팝펀치 1.0을 심사에 올리기 전 하루 동안 걸러 낸 것들."
 image: /assets/img/poppunch-app-store-submission/caption-before-after.webp
+tags: [팝펀치, 출시]
+read_minutes: 9
 ---
 
 <p class="lang-link"><a href="/2026/10/23/poppunch-app-store-submission-en/" lang="en">Read in English →</a></p>

@@ -1,0 +1,59 @@
+# When a post changes on main, ask Cloudflare Pages to rebuild fastutle.com, which lists the posts
+# from this site's /posts.json. The hook is called only after GitHub Pages has published this
+# very commit, so the rebuild reads the new posts.json rather than the previous one.
+#
+# Needs one repository secret: CLOUDFLARE_DEPLOY_HOOK, the Deploy Hook URL from the fastutle.com Pages
+# project in the Cloudflare dashboard (Settings > Builds > Deploy hooks). Treat it like a password:
+# anyone who has it can trigger builds.
+name: Rebuild fastutle.com
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "_posts/**"
+      - "posts.json"
+
+permissions:
+  contents: read
+  deployments: read
+
+concurrency:
+  group: rebuild-fastutle
+  cancel-in-progress: true
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Wait until GitHub Pages has published this commit
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          SHA: ${{ github.sha }}
+        run: |
+          for i in $(seq 1 60); do
+            id=$(gh api "repos/$REPO/deployments?sha=$SHA&environment=github-pages&per_page=1" --jq '.[0].id // empty')
+            if [ -n "$id" ]; then
+              state=$(gh api "repos/$REPO/deployments/$id/statuses?per_page=1" --jq '.[0].state // empty')
+              case "$state" in
+                success) echo "GitHub Pages published $SHA"; exit 0 ;;
+                failure|error) echo "GitHub Pages deployment ended with: $state" >&2; exit 1 ;;
+              esac
+            fi
+            sleep 10
+          done
+          echo "Timed out waiting for the GitHub Pages deployment of $SHA" >&2
+          exit 1
+
+      - name: Call the Cloudflare Pages deploy hook
+        env:
+          HOOK: ${{ secrets.CLOUDFLARE_DEPLOY_HOOK }}
+        run: |
+          if [ -z "$HOOK" ]; then
+            echo "The CLOUDFLARE_DEPLOY_HOOK secret is not set" >&2
+            exit 1
+          fi
+          curl -fsS -o /dev/null -X POST "$HOOK"
+          echo "fastutle.com rebuild requested"

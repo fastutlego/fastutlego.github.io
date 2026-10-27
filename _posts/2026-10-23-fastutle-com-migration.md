@@ -4,6 +4,8 @@ lang: ko
 title: "출시 직전에 자체 도메인으로 이사하기: GitHub Pages에서 fastutle.com까지"
 date: 2026-10-23 22:00:00 +0900
 description: "앱 세 개의 사이트를 GitHub Pages에서 Cloudflare Pages와 fastutle.com으로 옮기고, 앱·스토어·Google 로그인·메일 주소까지 하루에 정리한 기록이에요."
+tags: [사이트, 운영]
+read_minutes: 10
 ---
 
 iOS 심사 제출을 앞두고, 앱 소개·개인정보처리방침·다운로드 페이지가 있던 `fastutlego.github.io`를 자체 도메인 `fastutle.com`으로 옮겼어요. 처음에는 "도메인 하나 연결하기"였는데, 하다 보니 사이트 호스팅, 앱 코드, App Store Connect, Google Play, Google 로그인(OAuth), 메일 주소까지 하루 동안 줄줄이 바뀌었어요. 나중에 같은 일을 다시 할 때 보려고, 한 일을 주제별로 나누고 막혔던 점을 함께 적어 둬요.
