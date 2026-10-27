@@ -1,5 +1,6 @@
 ---
 layout: post
+lang: ko
 title: "출시 직전에 자체 도메인으로 이사하기: GitHub Pages에서 fastutle.com까지"
 date: 2026-10-23 22:00:00 +0900
 description: "앱 세 개의 사이트를 GitHub Pages에서 Cloudflare Pages와 fastutle.com으로 옮기고, 앱·스토어·Google 로그인·메일 주소까지 하루에 정리한 기록이에요."
