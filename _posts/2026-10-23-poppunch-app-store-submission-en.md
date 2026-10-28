@@ -56,7 +56,7 @@ The same pass found mainland China switched on among the countries on sale. In m
 
 What the API doesn't expose, the agent checked in the browser, reading the App Store Connect pages I had signed in to.
 
-- The App Privacy answers were **not published**. Without them you can't submit.
+- The App Privacy answers were not published. Without them you can't submit.
 - The app distribution agreement, the EU Digital Services Act and the Korean e-commerce items were all active.
 - All 24 Game Center items (leaderboards, achievements, challenges, activities) said "Prepare for Submission". They have to go into review together with the app version.
 
@@ -90,7 +90,7 @@ I picked which findings to act on. Anything that needs new screenshots — a sce
 
 Changing caption 4 meant regenerating the screenshots, because the caption is drawn into the image. But the original 6.9-inch captures were gone. All that was left were the finished images we had uploaded.
 
-The agent took another route. With the script that builds the screenshots, it redrew **only the top background and the text** for the new caption, and joined that onto the bottom (the app screen) of the existing image. The background gradient depends only on position, so the seam shouldn't show. That still had to be proven:
+The agent took another route. With the script that builds the screenshots, it redrew only the top background and the text for the new caption, and joined that onto the bottom (the app screen) of the existing image. The background gradient depends only on position, so the seam shouldn't show. That still had to be proven:
 
 - First it checked that the images in the working folder were byte-for-byte the ones in App Store Connect.
 - It redrew the top of screenshot 1 the same way and compared it with the original pixel by pixel, which confirmed the text size hadn't changed.
@@ -161,9 +161,9 @@ The final "Submit for Review" was pressed after I said to go ahead. The page sho
 
 ## Looking back
 
-The day split up quite cleanly. What the agent did well was **looking at everything** and **the tedious checking**: comparing the description in 11 languages with the source word for word, opening 110 screenshots, digging through binary strings, comparing pixels. A person, tired, would have skimmed most of it.
+The day split up cleanly. What the agent did well was looking at everything and the tedious checking: comparing the description in 11 languages with the source word for word, opening 110 screenshots, digging through binary strings, comparing pixels. A person, tired, would have skimmed most of it.
 
-Which findings to take and which to defer, when to press a publish button, what to check one last time on a real device: **choosing what to choose** was my job. And at those points the agent stopped and asked.
+Which findings to take and which to defer, when to press a publish button, what to check one last time on a real device: choosing what to choose was my job. And at those points the agent stopped and asked.
 
 Next time I want the store description and the app's behaviour to come from the same source, and to keep values that change, like numbers, out of the description. I'll also keep the original screenshot captures instead of deleting them. Stitching images together to fix one caption is something you only want to do once.
 

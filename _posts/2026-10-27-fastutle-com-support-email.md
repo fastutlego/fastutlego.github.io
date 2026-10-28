@@ -16,7 +16,7 @@ read_minutes: 4
 **요약**
 
 - 받기는 Cloudflare Email Routing으로 Gmail에 전달하고, 보내기는 Gmail의 "다른 주소에서 메일 보내기"를 썼다. 비용은 0원이다.
-- Gmail SMTP의 `535` 오류는 비밀번호 문제가 아니라 **2단계 인증이 꺼져 있어서** 앱 비밀번호를 만들 수 없던 게 원인이었다.
+- Gmail SMTP의 `535` 오류는 비밀번호 문제가 아니라 2단계 인증이 꺼져 있어서 앱 비밀번호를 만들 수 없던 게 원인이었다.
 - SPF는 Cloudflare와 Google을 모두 포함했고, DMARC는 일단 `p=none`이다.
 </aside>
 
@@ -28,13 +28,13 @@ Cloudflare 대시보드에서 Email Routing을 켜면 MX 3개, 전달용 DKIM, S
 
 ## 2. 보내기: Gmail "다른 주소에서 메일 보내기"
 
-Gmail 설정의 "다른 주소에서 메일 보내기"에 `support@fastutle.com`을 추가했다. SMTP 서버는 `smtp.gmail.com:587`(TLS), 사용자 이름은 Gmail 주소, 비밀번호는 **앱 비밀번호**다. 여기서 오래 막혔다.
+Gmail 설정의 "다른 주소에서 메일 보내기"에 `support@fastutle.com`을 추가했다. SMTP 서버는 `smtp.gmail.com:587`(TLS), 사용자 이름은 Gmail 주소, 비밀번호는 앱 비밀번호다. 여기서 오래 막혔다.
 
 - 계속 `535-5.7.8 Username and Password not accepted`가 났다.
 - 앱 비밀번호 화면은 "찾고 있는 설정을 계정에서 사용할 수 없습니다"라고만 했다.
-- 원인은 이 Google 계정에 **2단계 인증이 꺼져 있어서** 앱 비밀번호 자체를 만들 수 없는 상태였다는 것이다. 2단계 인증을 켜고 앱 비밀번호를 만든 뒤에야 통과했다.
+- 원인은 이 Google 계정에 2단계 인증이 꺼져 있어서 앱 비밀번호 자체를 만들 수 없는 상태였다는 것이다. 2단계 인증을 켜고 앱 비밀번호를 만든 뒤에야 통과했다.
 
-확인 메일이 `support@`로 가서 Gmail에 도착한 것으로, 받기 경로도 함께 검증됐다.
+확인 메일이 `support@`로 가서 Gmail에 도착한 것으로, 받기 경로도 함께 검증했다.
 
 ## 3. SPF와 DMARC
 

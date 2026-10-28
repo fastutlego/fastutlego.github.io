@@ -32,7 +32,7 @@ Across the three apps (Pop Punch for iOS and Android, Hanbam (formerly Modu View
 
 ## 2. App Store Connect
 
-Instead of editing each language in the web UI, I used Spaceship (the App Store Connect API client bundled with fastlane) to do it in one pass. First a **dry run that only prints** the fields to change, then, after checking the output, the real run.
+Instead of editing each language in the web UI, I used Spaceship (the App Store Connect API client bundled with fastlane) to do it in one pass. First a dry run that only prints the fields to change, then, after checking the output, the real run.
 
 - App information: the privacy-policy URL per language
 - Version information: support URL and marketing URL (editable versions only)
@@ -40,18 +40,18 @@ Instead of editing each language in the web UI, I used Spaceship (the App Store 
 
 ## 3. Google Play
 
-The contact website and email can be changed through the Android Publisher API with an edit (modify `edits.details`, then commit). But **the privacy-policy URL isn't in the API**, so that one had to be changed in the Play Console. For an app that's already live the button reads "Save and publish", and it publishes right away.
+The contact website and email can be changed through the Android Publisher API with an edit (modify `edits.details`, then commit). But the privacy-policy URL isn't in the API, so that one had to be changed in the Play Console. For an app that's already live the button reads "Save and publish", and it publishes right away.
 
 ## 4. Google Sign-In (OAuth) branding and Search Console
 
-Hanbam runs an OAuth consent screen for its Google Drive integration. The branding's home page, privacy-policy URL and authorised domains were all the old address, and brand verification had in fact already failed with "the home page URL is not registered to you".
+Hanbam runs an OAuth consent screen for its Google Drive integration. The branding's home page, privacy-policy URL and authorised domains were all the old address, and brand verification had already failed with "the home page URL is not registered to you".
 
-1. Add `fastutle.com` to Search Console as a **domain property**. Rather than the automatic Cloudflare connection (which hands DNS permissions to another service), I chose "any DNS provider", took the TXT value and added it myself.
+1. Add `fastutle.com` to Search Console as a domain property. Rather than the automatic Cloudflare connection (which hands DNS permissions to another service), I chose "any DNS provider", took the TXT value and added it myself.
 2. Change the branding links and authorised domains in all three projects to `fastutle.com`.
-3. Google's guidance says "retry 24 hours after verifying ownership", but requesting re-verification right away with "I've fixed the issue" **passed immediately**. Within the next seven days you then have to click "Publish branding", or the consent screen won't show the name and logo.
+3. Google's guidance says "retry 24 hours after verifying ownership", but requesting re-verification right away with "I've fixed the issue" passed immediately. Within the next seven days you then have to click "Publish branding", or the consent screen won't show the name and logo.
 4. Submit the new sitemap (`https://fastutle.com/sitemap.xml`).
 
-The OAuth **user support email** only accepts a Google account address or a Google Group, so the custom-domain address couldn't go there.
+The OAuth user support email only accepts a Google account address or a Google Group, so the custom-domain address couldn't go there.
 
 ## If I did this again
 

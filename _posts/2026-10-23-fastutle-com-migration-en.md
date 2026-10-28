@@ -41,7 +41,7 @@ With the iOS review submission coming up, I moved the app pages, privacy policie
 
 **Registrar.** I chose Cloudflare Registrar. It sells at cost, so renewals don't creep up (about $10 for the first year), and DNS lives on the same screen. Squarespace Domains (formerly Google Domains) also sells it, at roughly twice the price. `.kr` can't be bought through Cloudflare.
 
-**All records at once.** Instead of typing the ten GitHub Pages records (four A, four AAAA, the `www` CNAME and the ownership TXT) one by one, I wrote a BIND-format file and used **Import** in Cloudflare DNS. Leave "Proxy imported DNS records" off, or GitHub can't issue the certificate.
+**All records at once.** Instead of typing the ten GitHub Pages records (four A, four AAAA, the `www` CNAME and the ownership TXT) one by one, I wrote a BIND-format file and used Import in Cloudflare DNS. Leave "Proxy imported DNS records" off, or GitHub can't issue the certificate.
 
 ```text
 $ORIGIN fastutle.com.
@@ -63,7 +63,7 @@ The original plan was just to attach the domain to GitHub Pages. But the same da
 1. Rename the user-site repository (`<account>.github.io`) to an ordinary repository name. GitHub keeps the custom-domain setting across a rename, so `fastutle.com` stayed up meanwhile.
 2. Create the Cloudflare Pages project and give its GitHub app access to this one repository only.
 3. Compare responses between the temporary `*.pages.dev` address and GitHub Pages: the main pages, redirects, the 404 page, `app-ads.txt`, and the privacy-policy HTML.
-4. Add the custom domain to the Pages project. Cloudflare rewrites the A/AAAA records to a proxied CNAME for `<project>.pages.dev`. Until the domain check finished there were **about three minutes of 522 errors**.
+4. Add the custom domain to the Pages project. Cloudflare rewrites the A/AAAA records to a proxied CNAME for `<project>.pages.dev`. Until the domain check finished there were about three minutes of 522 errors.
 5. Attach `www` to Pages as well, and add a Redirect Rule: `https://www.*` → `https://${1}` (query preserved), 301.
 6. Make the repository private and redeploy to confirm that Cloudflare still builds it.
 
@@ -103,7 +103,7 @@ Turning on CSP blocked the analytics script Cloudflare injects automatically (`s
 
 ## 4. Retiring the old GitHub Pages address
 
-At first I thought the old address didn't need to stay alive. But TestFlight builds already out there used the old privacy-policy and share links. So for a while the old repository became a **redirect-only** site.
+At first I thought the old address didn't need to stay alive. But TestFlight builds already out there used the old privacy-policy and share links. So for a while the old repository became a redirect-only site.
 
 - Each old page got an `index.html` that forwards with `meta refresh` + `canonical` + `location.replace("https://fastutle.com" + path + query + hash)`, lowercasing the path on the way.
 - Every other path was forwarded the same way by `404.html`.

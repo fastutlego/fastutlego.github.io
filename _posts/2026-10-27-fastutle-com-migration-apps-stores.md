@@ -32,7 +32,7 @@ read_minutes: 4
 
 ## 2. App Store Connect
 
-화면에서 언어마다 고치는 대신 fastlane에 들어 있는 Spaceship(App Store Connect API)으로 한 번에 처리했다. 먼저 바꿀 필드를 **출력만 하는 점검**을 돌리고, 결과를 확인한 뒤 적용했다.
+화면에서 언어마다 고치는 대신 fastlane에 들어 있는 Spaceship(App Store Connect API)으로 한 번에 처리했다. 먼저 바꿀 필드를 출력만 하는 점검을 돌리고, 결과를 확인한 뒤 적용했다.
 
 - 앱 정보: 언어별 개인정보처리방침 URL
 - 버전 정보: 지원 URL, 마케팅 URL (편집 가능한 버전만)
@@ -40,18 +40,18 @@ read_minutes: 4
 
 ## 3. Google Play
 
-연락처 웹사이트와 이메일은 Android Publisher API의 edit로 바꿀 수 있다(`edits.details` 수정 후 commit). 하지만 **개인정보처리방침 URL은 API에 없어서** Play Console 화면에서 바꿔야 했다. 이미 출시된 앱은 버튼이 "저장 및 출시"로 나오고, 누르면 바로 게시된다.
+연락처 웹사이트와 이메일은 Android Publisher API의 edit로 바꿀 수 있다(`edits.details` 수정 후 commit). 하지만 개인정보처리방침 URL은 API에 없어서 Play Console 화면에서 바꿔야 했다. 이미 출시된 앱은 버튼이 "저장 및 출시"로 나오고, 누르면 바로 게시된다.
 
 ## 4. Google 로그인(OAuth) 브랜딩과 Search Console
 
 한밤은 Google Drive 연동 때문에 OAuth 동의 화면을 운영 중이다. 브랜딩의 홈페이지·개인정보처리방침·승인된 도메인이 모두 옛 주소였고, 확인해 보니 브랜드 검증이 "홈페이지 URL이 나에게 등록되어 있지 않습니다"로 이미 실패해 있었다.
 
-1. Search Console에 `fastutle.com`을 **도메인 속성**으로 추가했다. Cloudflare 자동 연결(다른 서비스에 DNS 권한 넘기기) 대신 "모든 DNS 제공업체"를 골라 TXT 값을 받아 직접 넣었다.
+1. Search Console에 `fastutle.com`을 도메인 속성으로 추가했다. Cloudflare 자동 연결(다른 서비스에 DNS 권한 넘기기) 대신 "모든 DNS 제공업체"를 골라 TXT 값을 받아 직접 넣었다.
 2. 세 프로젝트의 브랜딩 링크와 승인된 도메인을 `fastutle.com`으로 바꿨다.
-3. Google 안내는 "소유 인증 후 24시간 뒤 재시도"였지만, 바로 "문제를 해결함"으로 재검증을 요청하니 **즉시 통과**했다. 그다음 7일 안에 "브랜딩 게시"를 눌러야 동의 화면에 이름과 로고가 보인다.
+3. Google 안내는 "소유 인증 후 24시간 뒤 재시도"였지만, 바로 "문제를 해결함"으로 재검증을 요청하니 즉시 통과했다. 그다음 7일 안에 "브랜딩 게시"를 눌러야 동의 화면에 이름과 로고가 보인다.
 4. 새 사이트맵(`https://fastutle.com/sitemap.xml`)을 제출했다.
 
-OAuth의 **사용자 지원 이메일**은 Google 계정 주소나 Google 그룹만 고를 수 있어서 자체 도메인 메일을 넣을 수 없었다.
+OAuth의 사용자 지원 이메일은 Google 계정 주소나 Google 그룹만 고를 수 있어서 자체 도메인 메일을 넣을 수 없었다.
 
 ## 다음에 같은 일을 한다면
 

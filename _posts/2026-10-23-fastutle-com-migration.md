@@ -41,7 +41,7 @@ iOS 심사 제출을 앞두고, 앱 소개·개인정보처리방침·다운로�
 
 **등록업체.** Cloudflare Registrar를 골랐다. 원가로 팔아서 갱신비가 오르지 않고(첫해 약 $10), DNS를 같은 화면에서 바로 다룰 수 있다. Squarespace Domains(옛 Google Domains)에서도 살 수 있지만 가격이 두 배쯤이었다. `.kr`은 Cloudflare에서 살 수 없다.
 
-**레코드 한 번에 넣기.** GitHub Pages용 레코드 10개(A 4개, AAAA 4개, `www` CNAME, 소유 인증 TXT)를 하나씩 입력하는 대신, BIND 형식 파일을 만들어 Cloudflare DNS의 **Import**로 한 번에 넣었다. 이때 "Proxy imported DNS records"는 꺼 둬야 GitHub이 인증서를 발급할 수 있다.
+**레코드 한 번에 넣기.** GitHub Pages용 레코드 10개(A 4개, AAAA 4개, `www` CNAME, 소유 인증 TXT)를 하나씩 입력하는 대신, BIND 형식 파일을 만들어 Cloudflare DNS의 Import로 한 번에 넣었다. 이때 "Proxy imported DNS records"는 꺼 둬야 GitHub이 인증서를 발급할 수 있다.
 
 ```text
 $ORIGIN fastutle.com.
@@ -63,7 +63,7 @@ www.fastutle.com. 3600 IN CNAME <계정>.github.io.
 1. 사용자 사이트 저장소(`<계정>.github.io`)의 이름을 일반 저장소 이름으로 바꿨다. GitHub은 저장소 이름이 바뀌어도 커스텀 도메인 설정을 따라가서, 그동안에도 `fastutle.com`은 열렸다.
 2. Cloudflare Pages 프로젝트를 만들고, GitHub 앱에는 이 저장소 하나만 권한을 줬다.
 3. `*.pages.dev` 임시 주소에서 GitHub Pages와 응답을 비교했다. 주요 주소, 리디렉션, 404, `app-ads.txt`, 개인정보처리방침 HTML까지 같은지 확인했다.
-4. Pages 프로젝트에 커스텀 도메인을 추가했다. Cloudflare가 A/AAAA 레코드를 `<프로젝트>.pages.dev` CNAME(프록시 켬)으로 바꿔 준다. 도메인 확인이 끝날 때까지 **약 3분간 522 오류**가 났다.
+4. Pages 프로젝트에 커스텀 도메인을 추가했다. Cloudflare가 A/AAAA 레코드를 `<프로젝트>.pages.dev` CNAME(프록시 켬)으로 바꿔 준다. 도메인 확인이 끝날 때까지 약 3분간 522 오류가 났다.
 5. `www`도 Pages에 붙이고, Redirect Rule로 `https://www.*` → `https://${1}`(쿼리 유지) 301을 걸었다.
 6. 저장소를 비공개로 바꾸고, 비공개 상태에서도 Cloudflare 빌드가 되는지 다시 배포해 확인했다.
 
@@ -103,7 +103,7 @@ CSP를 켜자 Cloudflare가 자동으로 끼워 넣는 통계 스크립트(`stat
 
 ## 4. 옛 GitHub Pages 주소 정리
 
-처음에는 옛 주소를 살려 두지 않아도 된다고 생각했다. 그런데 이미 배포된 TestFlight 빌드가 옛 주소의 개인정보처리방침·공유 링크를 쓰고 있었다. 그래서 한동안 옛 주소의 저장소를 **리디렉션 전용**으로 썼다.
+처음에는 옛 주소를 살려 두지 않아도 된다고 생각했다. 그런데 이미 배포된 TestFlight 빌드가 옛 주소의 개인정보처리방침·공유 링크를 쓰고 있었다. 그래서 한동안 옛 주소의 저장소를 리디렉션 전용으로 썼다.
 
 - 옛 페이지마다 `index.html`을 만들어 `meta refresh` + `canonical` + `location.replace("https://fastutle.com" + 경로 + 쿼리 + 해시)`로 넘겼다. 경로는 소문자로 바꿔서 넘겼다.
 - 그 밖의 경로는 `404.html`이 같은 방식으로 넘겼다.

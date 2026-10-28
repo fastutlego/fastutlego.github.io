@@ -16,7 +16,7 @@ read_minutes: 3
 **In short**
 
 - Incoming mail is forwarded to Gmail by Cloudflare Email Routing; outgoing mail uses Gmail's "Send mail as". Total cost: nothing.
-- Gmail's SMTP `535` error wasn't a wrong password. **Two-step verification was off**, so an app password couldn't be created at all.
+- Gmail's SMTP `535` error wasn't a wrong password. Two-step verification was off, so an app password couldn't be created at all.
 - SPF includes both Cloudflare and Google; DMARC is `p=none` for now.
 </aside>
 
@@ -28,11 +28,11 @@ Turning on Email Routing in the Cloudflare dashboard adds three MX records, a DK
 
 ## 2. Sending: Gmail's "Send mail as"
 
-In Gmail settings, under "Send mail as", I added `support@fastutle.com`. The SMTP server is `smtp.gmail.com:587` (TLS), the username is the Gmail address, and the password has to be an **app password**. This is where I got stuck for a long time.
+In Gmail settings, under "Send mail as", I added `support@fastutle.com`. The SMTP server is `smtp.gmail.com:587` (TLS), the username is the Gmail address, and the password has to be an app password. This is where I got stuck for a long time.
 
 - Every attempt ended in `535-5.7.8 Username and Password not accepted`.
 - The app-passwords page only said "The setting you are looking for is not available for your account".
-- The cause: **two-step verification was off** on this Google account, so app passwords couldn't be created at all. After turning it on and creating an app password, it went through.
+- The cause: two-step verification was off on this Google account, so app passwords couldn't be created at all. After turning it on and creating an app password, it went through.
 
 The confirmation email went to `support@` and arrived in Gmail, which also proved the receiving path.
 
