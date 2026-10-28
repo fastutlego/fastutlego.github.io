@@ -20,7 +20,7 @@ read_minutes: 4
 - Google Sign-In brand verification passed immediately once the domain was added as a Search Console domain property.
 </aside>
 
-[Part 1](/2026/10/23/fastutle-com-migration-en/) moved the site to `fastutle.com`. But a site's address doesn't live only on the site. It was also in the app code, the store listings, the Google Sign-In consent screen and the search console. This part is about finding and replacing all of it.
+[Part 1](/2026/10/23/fastutle-com-migration-en/) moved the site to `fastutle.com`. But a site's address doesn't live only on the site. It was also in the app code, the store listings, the Google Sign-In consent screen and the search console.
 
 ## 1. App code
 

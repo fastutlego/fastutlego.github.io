@@ -20,7 +20,7 @@ read_minutes: 6
 - Security headers took one `_headers` file, and the old address lived on for a while as a redirect-only site.
 </aside>
 
-With the iOS review submission coming up, I moved the app pages, privacy policies and download pages from the default GitHub Pages address (`<account>.github.io`) to our own domain, `fastutle.com`. It started as "connect one domain" and turned into a day where the hosting, the app code, App Store Connect, Google Play, Google Sign-In (OAuth) and the contact email all changed one after another. I'm writing it down in three parts, by topic, so the next move goes faster. This part is about the site and the domain.
+With the iOS review submission coming up, I moved the app pages, privacy policies and download pages from the default GitHub Pages address (`<account>.github.io`) to our own domain, `fastutle.com`. It started as "connect one domain" and turned into a day where the hosting, the app code, App Store Connect, Google Play, Google Sign-In (OAuth) and the contact email all changed one after another. I'm writing it down in three parts, by topic, so the next move goes faster.
 
 ## At a glance
 
