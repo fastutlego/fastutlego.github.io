@@ -4,6 +4,8 @@ lang: ko
 url: https://fastutlego.github.io
 baseurl: ""
 theme: minima
+# Firebase Analytics measurement ID (project fastutlego-blog); see _includes/google-analytics.html
+google_analytics: G-JT02LG8PRD
 permalink: /:year/:month/:day/:title/
 plugins:
   - jekyll-feed

@@ -1,0 +1,34 @@
+<!--
+  Firebase Analytics (project: fastutlego-blog).
+  minima includes this file only when JEKYLL_ENV=production and site.google_analytics is set,
+  so local `jekyll serve` does not send events.
+  Page views and countries come from the default page_view event.
+  Every link click is logged as `link_click` with the link's text, URL and type (internal/outbound).
+-->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-app.js";
+  import { getAnalytics, logEvent } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-analytics.js";
+
+  // A web app's Firebase config is public by design; access is controlled in the Firebase console.
+  const app = initializeApp({
+    apiKey: "AIzaSyDOm9ybtUDhKR6CXSzS2QIhS3L6bPmLxug",
+    authDomain: "fastutlego-blog.firebaseapp.com",
+    projectId: "fastutlego-blog",
+    storageBucket: "fastutlego-blog.firebasestorage.app",
+    messagingSenderId: "168653333210",
+    appId: "1:168653333210:web:2d3bd73b7c3ae618cfbbe3",
+    measurementId: "{{ site.google_analytics }}"
+  });
+  const analytics = getAnalytics(app);
+
+  document.addEventListener("click", (event) => {
+    const link = event.target.closest("a[href]");
+    if (!link) return;
+    const url = new URL(link.href, location.href);
+    logEvent(analytics, "link_click", {
+      link_text: (link.innerText || link.getAttribute("aria-label") || "").trim().slice(0, 100),
+      link_url: url.href.slice(0, 100),
+      link_type: url.host === location.host ? "internal" : "outbound",
+    });
+  });
+</script>
